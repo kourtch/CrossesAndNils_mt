@@ -7,6 +7,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Xml.Linq;
+using System.Timers;
+using System.Diagnostics;
 
 namespace CrossesAndNils
 {
@@ -217,6 +219,9 @@ namespace CrossesAndNils
             System.Console.WriteLine(get_string(board));
             System.Console.WriteLine();
 
+            var timer = new System.Diagnostics.Stopwatch();
+            timer.Start();
+
             // single thread
             //bool res = move(board, Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
 
@@ -238,6 +243,9 @@ namespace CrossesAndNils
                 {
                     threadsArray[i, j].Join();
                 }
+
+            timer.Stop();
+            System.Console.WriteLine(timer.Elapsed.ToString());
 
             System.Console.WriteLine(COUNT);       // 549946
             System.Console.WriteLine(CROSS_WIN);   // 131184
